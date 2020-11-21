@@ -802,7 +802,7 @@
     }
 
     function shouldBeConsumedByChild(target, deltaX, deltaY) {
-      // FIXME: this is a workaround for <select> issue in FF and IE #571
+
       if (!env.isWebKit && element.querySelector('select:focus')) {
         return true;
       }

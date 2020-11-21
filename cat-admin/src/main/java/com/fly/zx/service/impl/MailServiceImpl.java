@@ -48,10 +48,14 @@ public class MailServiceImpl implements MailService {
         simpleMailMessage.setText(content+randomCode);
         // 发送邮件
         mailSender.send(simpleMailMessage);
+
+        //更新redis中的缓存数据
         mailCodeDto = new MailCodeDto();
         mailCodeDto.setLastSendTime(new Date().getTime());
         mailCodeDto.setUserName(userName);
         mailCodeDto.setCode(String.valueOf(randomCode));
+
+        //todo 更新数据库内容待完善
         redisService.set(userName , JSON.toJSONString(mailCodeDto));
     }
 }

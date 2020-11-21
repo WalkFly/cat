@@ -18,7 +18,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**   
- * @Description:TODO(API应用KEY实体类)
+ * @Description:用户实体类
  * 
  * @version: V1.0
  * @author: zx
