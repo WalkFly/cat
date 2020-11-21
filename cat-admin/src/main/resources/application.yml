@@ -1,0 +1,30 @@
+server:
+  port: 8080
+spring:
+  #shardingsphere配置
+  shardingsphere:
+    datasource:
+      names: db01
+      db01:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/cat?useSSL=false&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8
+        username: root
+        password: root
+        type: com.alibaba.druid.pool.DruidDataSource
+
+  #配置邮箱
+  mail:
+    host: smtp.163.com
+    username: 17346850383@163.com
+    password: 123
+    port: 25
+    protocol: smtp
+    default-encoding: utf-8
+
+#配置mybatis日志输出
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
