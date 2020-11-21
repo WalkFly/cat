@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fly.zx.dao.MailDao">
+
+	<resultMap id="BaseResultMap" type="com.fly.zx.model.Mail">
+		<id column="id" property="id" />
+		<id column="register_name" property="registerName" />
+		<id column="address" property="address" />
+		<id column="title" property="title" />
+		<id column="content" property="content" />
+		<id column="type" property="type" />
+		<id column="create_time" property="createTime" />
+		<id column="ip" property="ip" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, register_name, address, title, content, type, create_time, ip
+	</sql>
+	
+</mapper>

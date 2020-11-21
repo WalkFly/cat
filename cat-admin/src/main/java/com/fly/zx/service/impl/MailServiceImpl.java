@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.fly.zx.common.ApiResult;
 import com.fly.zx.common.exception.SystemException;
 import com.fly.zx.common.service.RedisService;
+import com.fly.zx.dao.MailDao;
 import com.fly.zx.dto.MailCodeDto;
+import com.fly.zx.model.Mail;
 import com.fly.zx.service.MailService;
 import io.netty.util.internal.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +25,16 @@ public class MailServiceImpl implements MailService {
     @Autowired
     private RedisService redisService;
 
-    private static final String title = "cat论坛注册";
+    @Autowired
+    private MailDao mailDao;
 
-    private static final String content = "欢迎您接受内测，验证码为:";
+    private static final String title = "cat论坛注册zouxiang";
+
+    private static final String content = "欢迎您接受内测，验证码十分钟内有效，验证码为:";
 
 
     @Override
-    public void registerSendMail(String userName , String addresss) {
+    public void registerSendMail(String userName , String addresss , String registerIp) {
         String code = redisService.get(userName);
         MailCodeDto mailCodeDto;
         if(!StringUtil.isNullOrEmpty(code)){
@@ -54,8 +59,17 @@ public class MailServiceImpl implements MailService {
         mailCodeDto.setLastSendTime(new Date().getTime());
         mailCodeDto.setUserName(userName);
         mailCodeDto.setCode(String.valueOf(randomCode));
-
-        //todo 更新数据库内容待完善
         redisService.set(userName , JSON.toJSONString(mailCodeDto));
+        redisService.expire(userName , 600);
+        Mail mail = new Mail();
+        mail.setAddress(addresss);
+        mail.setContent(content+randomCode);
+        mail.setTitle(title);
+        mail.setRegisterName(userName);
+        mail.setIp(registerIp);
+        mail.setCreateTime(new Date());
+        mail.setType(1);
+        mailDao.insert(mail);
+
     }
 }

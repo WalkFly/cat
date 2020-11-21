@@ -25,7 +25,7 @@ public class MyGenerator {
     public static final String DATABASE = "cat";
     // 类信息：类名、对象名（一般是【类名】的首字母小些）、类说明、时间
     public static final String CLASSNAME = "foreign";
-    public static final String TABLE = "user";
+    public static final String TABLE = "mail";
     public static final String CLASSCOMMENT = "API应用KEY";
     public static final String TIME = "2019年10月16日";
     public static final String AGILE = new Date().getTime() + "";

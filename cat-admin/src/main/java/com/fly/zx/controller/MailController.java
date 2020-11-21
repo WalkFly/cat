@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+
 @Api("邮件管理类")
 @RestController
 public class MailController {
@@ -20,8 +23,10 @@ public class MailController {
     @ApiOperation("验证码管理类")
     @RequestMapping(value = "mail" , method = RequestMethod.POST)
     public CommonResult sendEmail(@RequestParam(value = "userName") String userName,
-                                  @RequestParam(value = "email") String email){
-        mailService.registerSendMail(userName , email);
+                                  @RequestParam(value = "email") String email,
+                                  HttpServletRequest request){
+        String ip = request.getRemoteHost();
+        mailService.registerSendMail(userName , email , ip);
         return CommonResult.success();
     }
 }
