@@ -1,5 +1,10 @@
 server:
   port: 8088
+  ssl:
+    key-store: keystore.p12
+    key-store-type: PKCS12
+    key-alias: tomcat
+    key-store-password: 123456
 spring:
   #shardingsphere配置
   shardingsphere:
@@ -7,9 +12,9 @@ spring:
       names: db01
       db01:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/cat?useSSL=false&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8
-        username: root
-        password: root
+        url: jdbc:mysql://192.9.50.35:4306/diotmp?useSSL=false&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8
+        username: soyea_commnet_nbiot
+        password: SoyeaCommnetNBIOT2018@#
         type: com.alibaba.druid.pool.DruidDataSource
 
   #配置邮箱
@@ -23,8 +28,10 @@ spring:
 
 #配置mybatis日志输出
 mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
 
 
 
